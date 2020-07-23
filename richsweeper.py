@@ -3,6 +3,7 @@ import time
 import itertools
 import ipaddress
 from subprocess import Popen, DEVNULL
+from rich import print
 from rich.console import Console
 from rich.table import Table
 
@@ -13,10 +14,15 @@ active_list = []
 inactive_list = []
 p = {}
 
-subnet = input("Please enter the network: ")
+
+print("[green]Welcome to Ping Reporter![/green]")
+print("[cyan]Please enter the network you wish to test...[/cyan]")
+print("Example: < 192.168.10.0/24 >")
+subnet = input("\nEnter network: ")
+print("\n")
 network = ipaddress.ip_network(subnet)
 
-for n in network.hosts():
+for n in network.hosts(): # start ping processes
     IP = str(n)
     p[IP] = Popen(['ping', '-c', '4', '-i', '0.2', IP], stdout=DEVNULL)
 
