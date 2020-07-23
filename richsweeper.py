@@ -22,7 +22,7 @@ subnet = input("\nEnter network: ")
 print("\n")
 network = ipaddress.ip_network(subnet)
 
-for n in network.hosts(): # start ping processes
+for n in network.hosts():
     IP = str(n)
     p[IP] = Popen(['ping', '-c', '4', '-i', '0.2', IP], stdout=DEVNULL)
 
